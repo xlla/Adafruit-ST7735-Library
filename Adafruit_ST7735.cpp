@@ -232,8 +232,9 @@ void Adafruit_ST7735::initR(uint8_t options) {
     _height = ST7735_TFTWIDTH_80;
     _width = ST7735_TFTHEIGHT_160;
     displayInit(Rcmd2green160x80);
-    _colstart = 24;
-    _rowstart = 0;
+    _colstart = 26;
+    _rowstart = 1;
+    invertDisplay(true);
   } else {
     // colstart, rowstart left at default '0' values
     displayInit(Rcmd2red);
@@ -277,7 +278,7 @@ void Adafruit_ST7735::setRotation(uint8_t m) {
 
   switch (rotation) {
   case 0:
-    if ((tabcolor == INITR_BLACKTAB) || (tabcolor == INITR_MINI160x80)) {
+    if ((tabcolor == INITR_BLACKTAB) ) {
       madctl = ST77XX_MADCTL_MX | ST77XX_MADCTL_MY | ST77XX_MADCTL_RGB;
     } else {
       madctl = ST77XX_MADCTL_MX | ST77XX_MADCTL_MY | ST7735_MADCTL_BGR;
@@ -297,7 +298,7 @@ void Adafruit_ST7735::setRotation(uint8_t m) {
     _ystart = _rowstart;
     break;
   case 1:
-    if ((tabcolor == INITR_BLACKTAB) || (tabcolor == INITR_MINI160x80)) {
+    if ((tabcolor == INITR_BLACKTAB) ) {
       madctl = ST77XX_MADCTL_MY | ST77XX_MADCTL_MV | ST77XX_MADCTL_RGB;
     } else {
       madctl = ST77XX_MADCTL_MY | ST77XX_MADCTL_MV | ST7735_MADCTL_BGR;
@@ -317,7 +318,7 @@ void Adafruit_ST7735::setRotation(uint8_t m) {
     _xstart = _rowstart;
     break;
   case 2:
-    if ((tabcolor == INITR_BLACKTAB) || (tabcolor == INITR_MINI160x80)) {
+    if ((tabcolor == INITR_BLACKTAB) ) {
       madctl = ST77XX_MADCTL_RGB;
     } else {
       madctl = ST7735_MADCTL_BGR;
@@ -337,7 +338,7 @@ void Adafruit_ST7735::setRotation(uint8_t m) {
     _ystart = _rowstart;
     break;
   case 3:
-    if ((tabcolor == INITR_BLACKTAB) || (tabcolor == INITR_MINI160x80)) {
+    if ((tabcolor == INITR_BLACKTAB) ) {
       madctl = ST77XX_MADCTL_MX | ST77XX_MADCTL_MV | ST77XX_MADCTL_RGB;
     } else {
       madctl = ST77XX_MADCTL_MX | ST77XX_MADCTL_MV | ST7735_MADCTL_BGR;
