@@ -248,6 +248,25 @@ void Adafruit_ST77xx::enableSleep(boolean enable) {
   sendCommand(enable ? ST77XX_SLPIN : ST77XX_SLPOUT);
 }
 
+
+/*!
+    @brief  Draw a 16-bit image (565 RGB) at the specified (x,y) position.
+            For 16-bit display devices; no color reduction performed.
+    @param  x        Top left corner horizontal coordinate.
+    @param  y        Top left corner vertical coordinate.
+    @param  pcolors  Pointer to 16-bit array of pixel values.
+    @param  w        Width of bitmap in pixels.
+    @param  h        Height of bitmap in pixels.
+*/
+void Adafruit_ST77xx::drawRGBBuffer(int16_t x, int16_t y, uint16_t *pcolors,
+                                    int16_t w, int16_t h) {
+  startWrite();
+  setAddrWindow(x, y, w, h); // Clipped area
+    //write whole row in batch
+    writePixels(pcolors, w * h, true, true); // Push one (clipped) row
+  endWrite();
+}
+
 ////////// stuff not actively being used, but kept for posterity
 /*
 

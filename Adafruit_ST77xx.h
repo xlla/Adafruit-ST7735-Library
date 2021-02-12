@@ -102,6 +102,8 @@ public:
   void enableDisplay(boolean enable);
   void enableTearing(boolean enable);
   void enableSleep(boolean enable);
+  void drawRGBBuffer(int16_t x, int16_t y, uint16_t *pcolors, int16_t w,
+                     int16_t h);
 
 protected:
   uint8_t _colstart = 0,   ///< Some displays need this changed to offset
